@@ -40,6 +40,10 @@
   include: "scripts.yml"
   when: zabbix_server_alertscripts is defined or zabbix_server_externalscripts is defined
 
+- name: "Add zabbix custom tempĺates"
+  include: "zabbix_templates.yml"
+  when: ansible_version.full is version('2.9.0','>=')
+
 - name: "Zabbix-server started"
   service:
     name: zabbix-server
